@@ -1,565 +1,1047 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
+  <title>DubHaus – Built for Air-Cooled Addicts</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>VW Garage • WobbleWorks</title>
-  <meta name="description" content="WobbleWorks VW Garage: guides, tips, specs, and inspiration for classic Volkswagen fans." />
-  <meta name="theme-color" content="#0ea5e9" />
-  <link rel="icon" href="favicon.ico" />
-  <!-- Open Graph -->
-  <meta property="og:title" content="VW Garage • WobbleWorks" />
-  <meta property="og:description" content="Guides, tips, specs, and inspiration for classic Volkswagens." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="cover.jpg" />
+  <meta
+    name="description"
+    content="DubHaus – High-quality VW-inspired apparel for true air-cooled addicts. Premium garments, limited runs, real Dub culture, plus simple VW tech help."
+  />
   <style>
-    /* --------- Base / Theme --------- */
     :root {
-      --bg: #0b1115;
-      --panel: #0f172a;
-      --text: #e5e7eb;
-      --muted: #94a3b8;
-      --brand: #0ea5e9;     /* sky-500 vibe */
-      --accent: #22c55e;    /* green */
-      --ring: rgba(14,165,233,.35);
-      --card: #0b1320;
-      --code: #111827;
-      --shadow: 0 10px 30px rgba(2,8,23,.35);
-      --radius: 16px;
+      --bg: #050608;
+      --bg-alt: #111318;
+      --card: #181b22;
+      --accent: #f5c453;
+      --accent-soft: rgba(245, 196, 83, 0.1);
+      --text: #f7f7f7;
+      --muted: #9ca3af;
+      --danger: #ef4444;
     }
-    @media (prefers-color-scheme: light) {
-      :root {
-        --bg: #f8fafc;
-        --panel: #ffffff;
-        --text: #0b1220;
-        --muted: #475569;
-        --brand: #0284c7;
-        --accent: #16a34a;
-        --ring: rgba(2,132,199,.25);
-        --card: #ffffff;
-        --code: #0b1220;
-        --shadow: 0 10px 30px rgba(2,8,23,.08);
-      }
-    }
-    *, *::before, *::after { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background: radial-gradient(1200px 600px at 80% -10%, rgba(14,165,233,.12), transparent 60%), var(--bg);
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #1f2933 0, #02040a 45%);
       color: var(--text);
-      line-height: 1.55;
-      -webkit-font-smoothing: antialiased;
-      scroll-behavior: smooth;
+      line-height: 1.6;
     }
-    a { color: var(--brand); text-decoration: none; }
-    a:hover { text-decoration: underline; }
 
-    .container { width: min(1100px, 92%); margin-inline: auto; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-    /* --------- Header --------- */
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
     header {
-      position: sticky; top: 0; z-index: 50;
-      backdrop-filter: saturate(140%) blur(8px);
-      background: color-mix(in oklab, var(--bg) 92%, transparent);
-      border-bottom: 1px solid color-mix(in oklab, var(--panel) 70%, transparent);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(
+        to bottom,
+        rgba(3, 7, 18, 0.95),
+        rgba(3, 7, 18, 0.8),
+        transparent
+      );
+      border-bottom: 1px solid rgba(148, 163, 184, 0.15);
     }
-    .nav {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 14px 0;
-    }
-    .brand { display: flex; gap: .6rem; align-items: center; font-weight: 800; letter-spacing: .2px; }
-    .brand-badge {
-      width: 36px; aspect-ratio: 1; display: grid; place-items: center;
-      border-radius: 12px; background: linear-gradient(135deg, var(--brand), #38bdf8);
-      box-shadow: var(--shadow);
-    }
-    nav ul { display: flex; gap: 18px; list-style: none; padding: 0; margin: 0; }
-    nav a {
-      padding: 8px 12px; border-radius: 10px; font-weight: 600;
-      color: var(--text); text-decoration: none;
-    }
-    nav a:hover { background: color-mix(in oklab, var(--panel) 85%, transparent); }
-    .actions { display: flex; gap: .6rem; align-items: center; }
 
-    .btn {
-      display: inline-flex; align-items: center; gap: .5rem;
-      padding: 10px 14px; border-radius: 12px; border: 1px solid color-mix(in oklab, var(--panel) 75%, transparent);
-      background: linear-gradient(180deg, color-mix(in oklab, var(--panel) 70%, transparent), color-mix(in oklab, var(--panel) 85%, transparent));
-      color: var(--text); font-weight: 700; cursor: pointer;
-    }
-    .btn:hover { border-color: var(--brand); box-shadow: 0 0 0 4px var(--ring); }
-    .btn.primary {
-      background: linear-gradient(135deg, var(--brand), #38bdf8);
-      color: #001018; border-color: transparent;
-    }
-    .btn.primary:hover { box-shadow: 0 0 0 4px var(--ring); }
-
-    .icon { width: 18px; height: 18px; display: inline-block; }
-
-    /* --------- Hero --------- */
-    .hero {
-      padding: 52px 0 32px;
-      display: grid; gap: 28px;
-      grid-template-columns: 1.2fr .8fr;
+    .nav-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0.85rem 1.25rem;
+      display: flex;
       align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
     }
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
     }
-    .badge {
-      display: inline-flex; align-items: center; gap: .5rem;
-      padding: 6px 10px; border-radius: 999px; font-weight: 700; letter-spacing: .2px;
-      border: 1px solid color-mix(in oklab, var(--panel) 75%, transparent);
-      background: color-mix(in oklab, var(--panel) 85%, transparent);
+
+    .logo-mark {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      border: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      font-size: 0.9rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
       color: var(--muted);
     }
-    .title { margin: 10px 0 8px; font-size: clamp(28px, 4.2vw, 44px); line-height: 1.1; }
-    .subtitle { color: var(--muted); font-size: clamp(15px, 1.8vw, 18px); margin: 0 0 18px; }
 
-    .card {
-      background: linear-gradient(180deg, color-mix(in oklab, var(--card) 88%, transparent), color-mix(in oklab, var(--card) 96%, transparent));
-      border: 1px solid color-mix(in oklab, var(--panel) 70%, transparent);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-    .hero-art {
-      aspect-ratio: 4 / 3; overflow: hidden; position: relative;
-      display: grid; place-items: center;
-    }
-    .shine {
-      position: absolute; inset: -20%;
-      background: radial-gradient(600px 300px at 20% 0%, rgba(56,189,248,.25), transparent 55%),
-                  radial-gradient(400px 200px at 120% 100%, rgba(34,197,94,.18), transparent 60%);
-      pointer-events: none;
+    .nav-links a:hover {
+      color: var(--text);
     }
 
-    /* --------- Sections --------- */
-    section { padding: 38px 0; }
-    .section-head {
-      display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 16px;
+    .nav-cta {
+      padding: 0.5rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: linear-gradient(
+        145deg,
+        rgba(245, 196, 83, 0.08),
+        rgba(245, 196, 83, 0.02)
+      );
     }
-    h2 { margin: 0; font-size: clamp(22px, 3.4vw, 30px); }
-    .muted { color: var(--muted); }
 
-    .grid {
-      display: grid; gap: 16px;
-      grid-template-columns: repeat(12, 1fr);
+    main {
+      flex: 1;
     }
-    .span-4 { grid-column: span 4; }
-    .span-6 { grid-column: span 6; }
-    .span-8 { grid-column: span 8; }
-    .span-12 { grid-column: 1 / -1; }
+
+    .section {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem;
+    }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 2.25rem;
+      padding-top: 2.5rem;
+      padding-bottom: 2.5rem;
+      align-items: center;
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-radius: 999px;
+      padding: 0.25rem 0.75rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 0.9rem;
+      background: rgba(15, 23, 42, 0.85);
+    }
+
+    .pill span {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      line-height: 1.05;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      color: var(--muted);
+      max-width: 28rem;
+      font-size: 0.98rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-ctas {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .btn-primary {
+      padding: 0.75rem 1.6rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: radial-gradient(circle at top left, #fbbf24, #f97316);
+      color: #080808;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .btn-primary span.arrow {
+      font-size: 1.1rem;
+    }
+
+    .btn-ghost {
+      padding: 0.7rem 1.3rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      margin-top: 0.4rem;
+    }
+
+    .meta-item {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .meta-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .hero-media {
+      position: relative;
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top, #111827, #020617);
+      border-radius: 1.4rem;
+      padding: 1rem;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: 0 22px 40px rgba(0, 0, 0, 0.7);
+      overflow: hidden;
+    }
+
+    .hero-main-img {
+      border-radius: 1rem;
+      overflow: hidden;
+      border: 1px solid rgba(15, 23, 42, 0.8);
+      background: #020617;
+      aspect-ratio: 4 / 5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .hero-tag {
+      position: absolute;
+      bottom: 0.6rem;
+      left: -0.3rem;
+      right: 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-tag-inner {
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+    }
+
+    /* TRUST STRIP */
+    .trust-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 0.75rem 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 700px) {
+      .trust-strip {
+        grid-template-columns: minmax(0, 1fr);
+        border-radius: 1rem;
+      }
+    }
+
+    .trust-item {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+
+    .trust-icon {
+      width: 16px;
+      height: 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+    }
+
+    /* SECTION HEADERS */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .section-header h2 {
+      font-size: 1.3rem;
+    }
+
+    .section-header p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 26rem;
+    }
+
+    /* PRODUCTS */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
     @media (max-width: 900px) {
-      .span-4, .span-6, .span-8 { grid-column: 1 / -1; }
+      .products-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
 
-    .post {
-      padding: 16px; display: grid; gap: 10px; align-content: start;
-      transition: transform .18s ease, box-shadow .18s ease;
-    }
-    .post:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(2,8,23,.22); }
-    .post img {
-      width: 100%; height: 180px; object-fit: cover; border-radius: 12px; border: 1px solid color-mix(in oklab, var(--panel) 75%, transparent);
-      background: #0a0a0a;
-    }
-    .tag {
-      display: inline-flex; gap: .35rem; align-items: center;
-      padding: 4px 8px; border-radius: 999px; font-size: 12px; font-weight: 700;
-      background: color-mix(in oklab, var(--panel) 85%, transparent); color: var(--muted);
-      border: 1px solid color-mix(in oklab, var(--panel) 75%, transparent);
+    @media (max-width: 640px) {
+      .products-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
 
-    details.guide {
-      padding: 14px; border-radius: 12px; border: 1px solid color-mix(in oklab, var(--panel) 75%, transparent);
-      background: color-mix(in oklab, var(--panel) 90%, transparent);
-    }
-    details.guide + details.guide { margin-top: 10px; }
-    details[open].guide { outline: 3px solid var(--ring); }
-
-    .tools {
-      display: grid; gap: 12px;
-      grid-template-columns: repeat(3, 1fr);
-    }
-    @media (max-width: 800px) { .tools { grid-template-columns: 1fr; } }
-    .tool {
-      padding: 16px; border-radius: 12px; border: 1px solid color-mix(in oklab, var(--panel) 75%, transparent);
-      background: color-mix(in oklab, var(--panel) 90%, transparent);
-    }
-    .tool code {
-      display: inline-block; padding: 2px 6px; border-radius: 8px; background: var(--code); color: #d1e7ff;
+    .product-card {
+      background: var(--card);
+      border-radius: 1.1rem;
+      padding: 0.85rem;
+      border: 1px solid rgba(148, 163, 184, 0.32);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
     }
 
-    /* --------- Gallery --------- */
-    .gallery {
-      display: grid; gap: 10px;
-      grid-template-columns: repeat(6, 1fr);
+    .product-img {
+      border-radius: 0.9rem;
+      overflow: hidden;
+      background: #020617;
+      aspect-ratio: 4 / 5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-align: center;
+      padding: 0.75rem;
     }
-    .gallery figure {
-      margin: 0; overflow: hidden; border-radius: 12px; border: 1px solid color-mix(in oklab, var(--panel) 70%, transparent);
-    }
-    .gallery img { width: 100%; height: 160px; object-fit: cover; display: block; }
-    .gallery figcaption { padding: 8px; font-size: 12px; color: var(--muted); }
-    @media (max-width: 900px) { .gallery { grid-template-columns: repeat(3, 1fr); } }
-    @media (max-width: 520px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
 
-    /* --------- Footer --------- */
-    footer { padding: 40px 0 60px; color: var(--muted); }
-    .footer-grid {
-      display: grid; gap: 16px; grid-template-columns: 2fr 1fr 1fr;
+    .product-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
     }
-    @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr; } }
-    .fine { font-size: 12px; color: var(--muted); }
 
-    /* Utilities */
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
-    .hidden { display:none; }
-    .row { display:flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-    input[type="search"], input[type="email"] {
-      width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid color-mix(in oklab, var(--panel) 72%, transparent);
-      background: color-mix(in oklab, var(--panel) 90%, transparent); color: var(--text);
-      outline: none;
+    .product-title {
+      font-size: 0.98rem;
+      font-weight: 600;
     }
-    input[type="search"]:focus, input[type="email"]:focus { border-color: var(--brand); box-shadow: 0 0 0 4px var(--ring); }
+
+    .product-price {
+      font-size: 0.9rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .product-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .product-actions {
+      margin-top: 0.4rem;
+    }
+
+    .btn-buy {
+      width: 100%;
+      padding: 0.6rem 0.8rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: linear-gradient(
+        145deg,
+        rgba(245, 196, 83, 0.95),
+        rgba(248, 113, 113, 0.98)
+      );
+      color: #050505;
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.7);
+    }
+
+    /* BRAND STORY */
+    .brand {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 2rem;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .brand {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .brand-copy h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .brand-copy p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .brand-tagline {
+      font-size: 0.85rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .brand-media {
+      background: radial-gradient(circle at top, #111827, #020617);
+      border-radius: 1.3rem;
+      border: 1px solid rgba(148, 163, 184, 0.32);
+      padding: 0.85rem;
+    }
+
+    .brand-media-inner {
+      border-radius: 1rem;
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      background: #020617;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    /* TECH HELP */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    @media (max-width: 900px) {
+      .tech-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .tech-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .tech-card {
+      background: var(--card);
+      border-radius: 1rem;
+      padding: 1rem;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .tech-title {
+      font-weight: 600;
+      font-size: 0.98rem;
+    }
+
+    .tech-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+    }
+
+    .tech-desc {
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .tech-link {
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      text-decoration: underline;
+      text-decoration-style: dotted;
+    }
+
+    /* CTA */
+    .cta {
+      text-align: center;
+      padding-bottom: 3rem;
+    }
+
+    .cta h2 {
+      font-size: 1.6rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .cta p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 1.4rem;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid rgba(148, 163, 184, 0.24);
+      background: #020617;
+    }
+
+    .footer-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-decoration-thickness: 1px;
+    }
   </style>
 </head>
 <body>
-  <!-- ===== Header / Nav ===== -->
-  <header>
-    <div class="container nav" role="navigation" aria-label="Primary">
-      <a class="brand" href="#top">
-        <span class="brand-badge" aria-hidden="true">
-          <!-- Simple VW-like roundel (not trademarked) -->
-          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/>
-            <path d="M7 15l2-6 3 6 3-6 2 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </span>
-        <span>WobbleWorks VW Garage</span>
-      </a>
-
-      <nav class="hidden" id="mobileNav" aria-label="Mobile"></nav>
-
-      <ul>
-        <li><a href="#articles">Articles</a></li>
-        <li><a href="#guides">How-Tos</a></li>
-        <li><a href="#tools">Specs & Tools</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-      </ul>
-
-      <div class="actions">
-        <button id="themeBtn" class="btn" aria-pressed="false" aria-label="Toggle dark mode">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M12 3a9 9 0 108.94 7.5A7 7 0 0112 3z" stroke="currentColor" stroke-width="2"/>
-          </svg>
-          Theme
-        </button>
-        <a class="btn primary" href="#newsletter">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M4 7l8 5 8-5v10H4V7z" stroke="currentColor" stroke-width="2" />
-          </svg>
-          Subscribe
-        </a>
-      </div>
-    </div>
-  </header>
-
-  <!-- ===== Hero ===== -->
-  <main id="top" class="container">
-    <section class="hero">
-      <div>
-        <span class="badge">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M5 12l4-4m-4 4l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          Air-cooled knowledge, water-cool vibes
-        </span>
-        <h1 class="title">VW Stuff That’s Actually Useful (and Fun)</h1>
-        <p class="subtitle">From Beetle basics to bus builds, we’ve got hands-on guides, friendly specs, and inspiration for your next wrench session.</p>
-        <div class="row">
-          <a class="btn primary" href="#guides">Start Wrenching</a>
-          <a class="btn" href="#articles">Read Articles</a>
+  <div class="page">
+    <header>
+      <div class="nav-inner">
+        <div class="logo">
+          <div class="logo-mark">DH</div>
+          <div>
+            DubHaus<br />
+            <span style="font-weight:400; font-size:0.7rem; color:var(--muted);">
+              Air-Cooled Apparel
+            </span>
+          </div>
         </div>
+        <nav class="nav-links">
+          <a href="#hero">Home</a>
+          <a href="#shop">Shop</a>
+          <a href="#tech">Tech Help</a>
+          <a href="#years">VW Year: 1970</a>
+          <a href="#brand">About</a>
+          <a href="#contact">Contact</a>
+          <a
+            href="https://dubthreads.myshopify.com"
+            class="nav-cta"
+            target="_blank"
+            rel="noopener"
+          >Shop DubHaus</a>
+        </nav>
       </div>
+    </header>
 
-      <div class="card hero-art" aria-label="Stylized illustration of a classic VW silhouette">
-        <div class="shine" aria-hidden="true"></div>
-        <!-- Simple VW Beetle-ish silhouette -->
-        <svg viewBox="0 0 800 600" aria-hidden="true">
-          <defs>
-            <linearGradient id="g1" x1="0" x2="1">
-              <stop offset="0" stop-color="#38bdf8"/><stop offset="1" stop-color="#22c55e"/>
-            </linearGradient>
-          </defs>
-          <rect width="100%" height="100%" rx="16" fill="url(#g1)" opacity=".08"/>
-          <g transform="translate(80,300)" fill="none" stroke="url(#g1)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M40,40 C60,-60 180,-120 300,-120 C420,-120 540,-60 560,40 L620,40 C660,40 680,60 680,100 L40,100 C40,60 60,40 100,40 Z" />
-            <circle cx="160" cy="120" r="48" />
-            <circle cx="520" cy="120" r="48" />
-            <path d="M200,10 h220" />
-            <path d="M310,-20 v30" />
-          </g>
-        </svg>
-      </div>
-    </section>
+    <main>
+      <!-- HERO -->
+      <section id="hero" class="section hero">
+        <div>
+          <div class="pill">
+            <span></span> Built for Air-Cooled Addicts
+          </div>
+          <h1>
+            High-Quality Garments<br />
+            <span>for True Dub Culture</span>
+          </h1>
+          <p class="hero-sub">
+            Tees built for carb tuning nights, meet-ups in the lot, and long
+            drives in air-cooled steel. No generic prints — just real VW-inspired
+            designs.
+          </p>
+          <div class="hero-ctas">
+            <a
+              href="https://dubthreads.myshopify.com"
+              class="btn-primary"
+              target="_blank"
+              rel="noopener"
+            >
+              <span>SHOP DUBHAUS</span>
+              <span class="arrow">↗</span>
+            </a>
+            <a href="#shop" class="btn-ghost">
+              Browse the Collection
+            </a>
+          </div>
+          <div class="hero-meta">
+            <div class="meta-item">
+              <div class="meta-dot"></div>
+              Printed on premium blanks
+            </div>
+            <div class="meta-item">
+              <div class="meta-dot"></div>
+              Limited runs only
+            </div>
+            <div class="meta-item">
+              <div class="meta-dot"></div>
+              Built for real VW people
+            </div>
+          </div>
 
-    <!-- ===== Article Listing ===== -->
-    <section id="articles" aria-labelledby="articles-title">
-      <div class="section-head">
-        <h2 id="articles-title">Latest Articles</h2>
-        <div class="row" role="search">
-          <label class="sr-only" for="search">Search articles</label>
-          <input id="search" type="search" placeholder="Search articles, e.g., 'timing', 'Beetle', 'idle'…" />
+          <div class="trust-strip">
+            <div class="trust-item">
+              <div class="trust-icon">✓</div>
+              Secure Checkout
+            </div>
+            <div class="trust-item">
+              <div class="trust-icon">✓</div>
+              High-Quality Garments
+            </div>
+            <div class="trust-item">
+              <div class="trust-icon">✓</div>
+              Satisfaction Guaranteed
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div class="grid" id="postGrid" data-search-scope="article">
-        <article class="post card span-4" data-tags="beetle ignition timing points">
-          <img src="images/beetle-engine.jpg" alt="Close-up of an air-cooled Beetle engine bay" />
-          <div class="row">
-            <span class="tag">Beetle</span><span class="tag">Ignition</span>
+        <div class="hero-media">
+          <div class="hero-card">
+            <div class="hero-main-img">
+              <!-- HERO IMAGE PLACEHOLDER -->
+              <!-- Replace this whole span with:
+                   <img src="images/hero-dubhaus.jpg" alt="Person wearing DubHaus shirt next to a classic VW" />
+              -->
+              <span>
+                HERO IMAGE PLACEHOLDER<br /><br />
+                Replace this with a photo of someone wearing your DubHaus shirt
+                next to a classic VW (sunset / garage / meet vibes).
+              </span>
+            </div>
           </div>
-          <h3>Static Timing a 1600DP the Easy Way</h3>
-          <p class="muted">No timing light? No problem. Learn the quick static method to get your Beetle running crisp.</p>
-          <a href="#" aria-label="Read Static Timing a 1600DP the Easy Way">Read →</a>
-        </article>
-
-        <article class="post card span-4" data-tags="carburetor adjustments pict-3 idle">
-          <img src="images/pict3.jpg" alt="Solex 34 PICT-3 carburetor on a workbench" />
-          <div class="row">
-            <span class="tag">Carb</span><span class="tag">PICT-3</span>
+          <div class="hero-tag">
+            <div class="hero-tag-inner">
+              Lifestyle &amp; Garage-Proof VW Streetwear
+            </div>
           </div>
-          <h3>Dialing in a 34 PICT-3: Baseline to Smooth Idle</h3>
-          <p class="muted">Baseline settings, vacuum leak checks, and mixture tweaks for a happy air-cooled idle.</p>
-          <a href="#">Read →</a>
-        </article>
+        </div>
+      </section>
 
-        <article class="post card span-4" data-tags="electrical wiring starter relay bus beetle">
-          <img src="images/wiring.jpg" alt="Neat wiring harness and relay layout" />
-          <div class="row">
-            <span class="tag">Electrical</span><span class="tag">Wiring</span>
+      <!-- SHOP / FEATURED PRODUCTS -->
+      <section id="shop" class="section">
+        <div class="section-header">
+          <h2>Best Sellers</h2>
+          <p>
+            Built for the air-cooled faithful. Tap <strong>BUY NOW</strong> to
+            jump straight to checkout and lock in your size before the drop
+            sells out.
+          </p>
+        </div>
+
+        <div class="products-grid">
+          <!-- PRODUCT 1 -->
+          <article class="product-card">
+            <div class="product-img">
+              Front shot of your hero tee mockup or lifestyle photo goes here.
+            </div>
+            <div class="product-meta">
+              <div class="product-title">DubHaus Classic Beetle Tee</div>
+              <div class="product-price">$29.99</div>
+              <div class="product-sub">
+                Clean front print, daily-wear fit — the one you reach for every
+                time you fire up the car.
+              </div>
+            </div>
+            <div class="product-actions">
+              <a
+                href="https://dubthreads.myshopify.com"
+                target="_blank"
+                rel="noopener"
+              >
+                <button class="btn-buy">BUY NOW</button>
+              </a>
+            </div>
+          </article>
+
+          <!-- PRODUCT 2 -->
+          <article class="product-card">
+            <div class="product-img">
+              Lifestyle shot: model in a garage with a Beetle in the background.
+            </div>
+            <div class="product-meta">
+              <div class="product-title">Air-Cooled Garage Script Tee</div>
+              <div class="product-price">$29.99</div>
+              <div class="product-sub">
+                Inspired by late-night wrench sessions and that first start-up
+                after a tune.
+              </div>
+            </div>
+            <div class="product-actions">
+              <a
+                href="https://dubthreads.myshopify.com"
+                target="_blank"
+                rel="noopener"
+              >
+                <button class="btn-buy">BUY NOW</button>
+              </a>
+            </div>
+          </article>
+
+          <!-- PRODUCT 3 -->
+          <article class="product-card">
+            <div class="product-img">
+              Photo of friends wearing DubHaus shirts at a meet or cruise night.
+            </div>
+            <div class="product-meta">
+              <div class="product-title">Meet-Up Drop – Limited Run</div>
+              <div class="product-price">$32.99</div>
+              <div class="product-sub">
+                Small-batch print. When it’s gone, it’s gone — no reprints on
+                this design.
+              </div>
+            </div>
+            <div class="product-actions">
+              <a
+                href="https://dubthreads.myshopify.com"
+                target="_blank"
+                rel="noopener"
+              >
+                <button class="btn-buy">BUY NOW</button>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- BRAND STORY / SOCIAL PROOF -->
+      <section id="brand" class="section">
+        <div class="brand">
+          <div class="brand-copy">
+            <h2>Built for the Air-Cooled Faithful</h2>
+            <p>
+              DubHaus was built for the ones who live for carb tuning, late-night
+              drives, and the sound of a real engine cooling down in the
+              driveway. Every design comes from actual VW culture — not a stock
+              image library.
+            </p>
+            <p>
+              We’re a small brand, not a big-box label. That means limited drops,
+              designs that actually mean something, and gear that feels as good
+              on a Sunday cruise as it does at work on Monday.
+            </p>
+            <p>
+              As real photos roll in from the community, this space becomes the
+              wall of fame: owners, friends, and die-hard Dub addicts repping
+              the brand.
+            </p>
+            <div class="brand-tagline">
+              DubHaus – Born in the garage, worn everywhere.
+            </div>
           </div>
-          <h3>Starter Circuit 101: Ignition Switch, Solenoid & Relays</h3>
-          <p class="muted">Understand the path from key to crank, plus a clean relay add-on for old wiring.</p>
-          <a href="#">Read →</a>
-        </article>
-      </div>
-    </section>
+          <div class="brand-media">
+            <div class="brand-media-inner">
+              SOCIAL PROOF IMAGE PLACEHOLDER<br /><br />
+              Drop in photos of real people wearing your shirts — at meets, in
+              garages, at shows. This instantly boosts trust and conversions.
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <!-- ===== Guides ===== -->
-    <section id="guides" aria-labelledby="guides-title">
-      <div class="section-head">
-        <h2 id="guides-title">Hands-On How-Tos</h2>
-        <p class="muted">Clear steps for classic VW tasks. Expand any topic to see the process.</p>
-      </div>
+      <!-- VW TECH HELP SECTION -->
+      <section id="tech" class="section">
+        <div class="section-header">
+          <h2>VW Tech Help – DIY Guides</h2>
+          <p>
+            Wrenched in the driveway, not in a dealership bay. Simple,
+            no-nonsense help topics for classic VW owners — from carbs to
+            brakes, wiring, and stance.
+          </p>
+        </div>
 
-      <div class="grid">
-        <div class="span-8">
-          <details class="guide">
-            <summary><strong>Check for Spark: Coil → Distributor → Plugs</strong></summary>
-            <ol>
-              <li>Battery charged (≥12.4 V). Confirm clean grounds from battery to body and transmission strap.</li>
-              <li>Key ON: verify +12 V at coil terminal 15 (<em>positive</em>).</li>
-              <li>Crank: watch coil terminal 1 (<em>negative</em>) pulse (test lamp flashes / meter toggles).</li>
-              <li>Pull center coil wire at the cap, hold ~6–8 mm from clean ground, crank—look for strong blue spark.</li>
-              <li>If coil spark is good, check rotor, cap, and plug wires; then test plug spark at the electrode.</li>
-            </ol>
-          </details>
+        <div class="tech-grid">
+          <!-- Carburetor -->
+          <article class="tech-card">
+            <div class="tech-title">Fixing &amp; Tuning Your VW Carburetor</div>
+            <div class="tech-tag">Carb · 34 PICT-3 · Basics</div>
+            <div class="tech-desc">
+              Step-by-step help with idle issues, flat spots, mixture screws,
+              and common air leaks so your Beetle actually idles and pulls
+              clean.
+            </div>
+            <a
+              href="https://www.youtube.com/watch?v=eMqIwBlYCu4"
+              class="tech-link"
+              target="_blank"
+              rel="noopener"
+            >
+              Watch carburetor guide on YouTube
+            </a>
+          </article>
 
-          <details class="guide">
-            <summary><strong>Static Timing (vacuum distributor)</strong></summary>
-            <ol>
-              <li>Rotate engine to TDC #1 (notch on pulley aligned; rotor points to #1 mark).</li>
-              <li>Loosen distributor clamp. Turn ignition ON.</li>
-              <li>Connect a 12 V test lamp between coil (–) and ground. Rotate distributor slowly until lamp just turns <em>off/on</em> at your target advance (e.g., 7.5° BTDC mark).</li>
-              <li>Tighten clamp; recheck. Start engine and fine-tune with a timing light if available.</li>
-            </ol>
-          </details>
+          <!-- SVDA Distributor / Static Timing -->
+          <article class="tech-card">
+            <div class="tech-title">SVDA Distributor Install &amp; Static Timing</div>
+            <div class="tech-tag">Ignition · SVDA · Timing</div>
+            <div class="tech-desc">
+              How to drop in an SVDA distributor, line up the drive gear, and set
+              static timing so your 1600 starts easier and runs smoother.
+            </div>
+            <a
+              href="https://www.youtube.com/watch?v=wzZc4czFV-M"
+              class="tech-link"
+              target="_blank"
+              rel="noopener"
+            >
+              Watch SVDA timing guide on YouTube
+            </a>
+          </article>
 
-          <details class="guide">
-            <summary><strong>34 PICT-3 Baseline Settings</strong></summary>
-            <ul>
-              <li>Idle speed screw: turn in until it just touches the stop, then ¼ to ½ turn further.</li>
-              <li>Bypass (big) screw: ~2½ turns out. Mixture (small) screw: ~2½ turns out (starting point).</li>
-              <li>Warm engine, adjust bypass for ~850–900 rpm; tweak mixture for highest smooth idle; re-set idle speed.</li>
-              <li>Spritz carb cleaner around base & boots to detect vacuum leaks (rpm change = leak).</li>
+          <!-- Engine Removal -->
+          <article class="tech-card">
+            <div class="tech-title">Engine Removal – First Time Friendly</div>
+            <div class="tech-tag">Engine · Pulling the Motor</div>
+            <div class="tech-desc">
+              What to label, what to disconnect, and how to drop the engine
+              safely without sketchy moves or missing hardware.
+            </div>
+            <a href="#" class="tech-link">
+              Engine removal steps (soon)
+            </a>
+          </article>
+
+          <!-- Wiring Diagrams -->
+          <article class="tech-card">
+            <div class="tech-title">Wiring Diagrams &amp; Electrical Basics</div>
+            <div class="tech-tag">Electrical · Fuse Panel</div>
+            <div class="tech-desc">
+              Understand your fuse box, key circuits, and simple checks so you
+              can chase down dead lights, no-starts, and weird power issues.
+            </div>
+            <a href="#" class="tech-link">
+              Wiring diagrams (soon)
+            </a>
+          </article>
+
+          <!-- Brakes -->
+          <article class="tech-card">
+            <div class="tech-title">Brake Service, Safety &amp; Confidence</div>
+            <div class="tech-tag">Brakes · Drums · Safety</div>
+            <div class="tech-desc">
+              From pedal feel to bleeding, shoes, and hardware — how to get your
+              classic stopping straight and predictable.
+            </div>
+            <a href="#" class="tech-link">
+              Brake guide (soon)
+            </a>
+          </article>
+
+          <!-- Lowering -->
+          <article class="tech-card">
+            <div class="tech-title">Lowering Your VW the Right Way</div>
+            <div class="tech-tag">Suspension · Stance</div>
+            <div class="tech-desc">
+              Torsion adjustments, drop spindles, and what happens to ride
+              quality, tire clearance, and steering when you go low.
+            </div>
+            <a href="#" class="tech-link">
+              Lowering guide (soon)
+            </a>
+          </article>
+
+          <!-- More topics -->
+          <article class="tech-card">
+            <div class="tech-title">More Air-Cooled Topics Coming</div>
+            <div class="tech-tag">Community · Ongoing</div>
+            <div class="tech-desc">
+              As new write-ups and diagrams get finished, they’ll land here. The
+              goal: a simple, honest tech hub for daily-driven air-cooled VWs.
+            </div>
+            <a href="#" class="tech-link">
+              Suggest a topic
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <!-- VW YEAR FOCUS: 1970 -->
+      <section id="years" class="section">
+        <div class="section-header">
+          <h2>VW Year Focus: 1970 Beetle</h2>
+          <p>
+            Quick notes for 1970 so you can line up the right carb, ignition,
+            brakes, and stance for your car.
+          </p>
+        </div>
+
+        <div class="brand">
+          <div class="brand-copy">
+            <h2>1970 · Dual-Port Era Kicks Off</h2>
+            <p>
+              1970 is one of the sweet spots for daily-driven Beetles. Strong
+              engines, good parts support, and still very much classic in look
+              and feel.
+            </p>
+            <ul style="font-size:0.9rem; color:var(--muted); padding-left:1.1rem; margin-bottom:1rem;">
+              <li><strong>Engine:</strong> 1600cc, dual-port heads on many models, great torque.</li>
+              <li><strong>Carb:</strong> Commonly running a 34 PICT-3 with an SVDA distributor when tuned right.</li>
+              <li><strong>Ignition:</strong> 12-volt system, good match for upgraded coils and electronic points kits.</li>
+              <li><strong>Brakes:</strong> Drum brakes all around from the factory; many owners upgrade fronts to discs.</li>
+              <li><strong>Lowering:</strong> Beam adjusters or drop spindles up front, a spline or two in the rear — watch camber and tire rub.</li>
+              <li><strong>Wiring:</strong> Fuse panel and wiring are still simple enough to trace without losing your mind.</li>
             </ul>
-          </details>
+            <div class="brand-tagline">
+              1970 – Classic looks, modern-enough hardware, daily-driver ready.
+            </div>
+          </div>
+          <div class="brand-media">
+            <div class="brand-media-inner">
+              1970 BEETLE IMAGE PLACEHOLDER<br /><br />
+              Drop in a photo or illustration of a 1970 Beetle here — stock or
+              slightly lowered with period wheels to match your brand vibe.
+            </div>
+          </div>
         </div>
+      </section>
 
-        <aside class="span-4 card" style="padding:16px;">
-          <h3 style="margin-top:0;">Quick Tips</h3>
-          <ul>
-            <li><strong>Point gap:</strong> <code>0.016 in</code> (≈0.4 mm) on a 1600DP.</li>
-            <li><strong>Spark plug gap:</strong> start around <code>0.024–0.028 in</code> for many air-cooled setups.</li>
-            <li><strong>Order:</strong> Firing order is <code>1-4-3-2</code>, clockwise.</li>
-            <li><strong>Grounds:</strong> Bad grounds mimic bad parts—clean and tight is king.</li>
-          </ul>
-          <p class="muted">Always verify specs for your exact year/engine/distributor combo.</p>
-        </aside>
-      </div>
-    </section>
+      <!-- CTA -->
+      <section class="section cta" id="contact">
+        <h2>Ready to Rep the Dub Life?</h2>
+        <p>
+          Pick your favorite design, lock in your size, and we’ll handle the rest.
+          Limited runs mean once a drop is gone, it’s gone.
+        </p>
+        <a
+          href="https://dubthreads.myshopify.com"
+          class="btn-primary"
+          target="_blank"
+          rel="noopener"
+        >
+          <span>SHOP DUBHAUS</span>
+          <span class="arrow">↗</span>
+        </a>
+      </section>
+    </main>
 
-    <!-- ===== Specs & Tools ===== -->
-    <section id="tools" aria-labelledby="tools-title">
-      <div class="section-head">
-        <h2 id="tools-title">Specs & Tools</h2>
-        <p class="muted">Handy references you can copy to your notes.</p>
-      </div>
-      <div class="tools">
-        <div class="tool">
-          <h3 style="margin-top:0;">Tune-Up Card</h3>
-          <p><strong>Valve lash (cold):</strong> <code>0.006 in</code> (intake & exhaust; many stock setups)</p>
-          <p><strong>Point gap (1600DP):</strong> <code>0.016 in</code></p>
-          <p><strong>Idle target:</strong> <code>850–900 rpm</code></p>
-          <p><strong>Firing order:</strong> <code>1-4-3-2</code></p>
+    <footer>
+      <div class="footer-inner">
+        <div>
+          © <span id="year"></span> DubHaus. All rights reserved.
         </div>
-        <div class="tool">
-          <h3 style="margin-top:0;">Pulley Marks Helper</h3>
-          <p>Wrap a paper strip around the pulley, mark circumference, then divide for degrees:</p>
-          <p><strong>Degrees per mm</strong> depends on pulley diameter. Use a printable wheel or calculator.</p>
-          <p>Common advance marks: <code>7.5°</code>, <code>10°</code>, <code>30°</code> (all-in check with light).</p>
+        <div class="footer-links">
+          <a
+            href="https://dubthreads.myshopify.com"
+            target="_blank"
+            rel="noopener"
+          >Main Shop (Shopify)</a>
+          <a
+            href="https://www.etsy.com/shop/ImortalVenm"
+            target="_blank"
+            rel="noopener"
+          >Also available on Etsy</a>
         </div>
-        <div class="tool">
-          <h3 style="margin-top:0;">Charging Quick Check</h3>
-          <p><strong>Battery off:</strong> ~<code>12.6 V</code> (full). <strong>Engine at fast idle:</strong> <code>13.8–14.4 V</code>.</p>
-          <p>If you see <code>&lt;13.5 V</code>, inspect belt tension, regulator connections, brushes, and grounds.</p>
-        </div>
       </div>
-    </section>
+    </footer>
+  </div>
 
-    <!-- ===== Gallery ===== -->
-    <section id="gallery" aria-labelledby="gallery-title">
-      <div class="section-head">
-        <h2 id="gallery-title">Gallery</h2>
-        <p class="muted">Community rides, engine bays, and road trips. Send yours!</p>
-      </div>
-      <div class="gallery" aria-live="polite">
-        <!-- Replace placeholders with your own images -->
-        <figure><img src="images/gallery1.jpg" alt="Yellow Beetle on a coastal road"><figcaption>Coastal Cruise</figcaption></figure>
-        <figure><img src="images/gallery2.jpg" alt="Close up of fan shroud and carburetor"><figcaption>Clean Engine Bay</figcaption></figure>
-        <figure><img src="images/gallery3.jpg" alt="VW Bus at a campsite"><figcaption>Bus Life</figcaption></figure>
-        <figure><img src="images/gallery4.jpg" alt="Classic Beetle interior"><figcaption>Simple Interior</figcaption></figure>
-        <figure><img src="images/gallery5.jpg" alt="Beetle under restoration in a garage"><figcaption>Garage Diaries</figcaption></figure>
-        <figure><img src="images/gallery6.jpg" alt="Row of vintage VWs at a meet"><figcaption>Cars & Coffee</figcaption></figure>
-      </div>
-    </section>
-
-    <!-- ===== Newsletter / Contact ===== -->
-    <section id="newsletter" aria-labelledby="newsletter-title">
-      <div class="section-head">
-        <h2 id="newsletter-title">Get WobbleWorks Updates</h2>
-        <p class="muted">No spam—just new guides, parts checklists, and meet-up notes.</p>
-      </div>
-      <form class="card" style="padding:16px" onsubmit="return fakeSubmit(event)">
-        <label for="email" style="display:block; font-weight:700;">Email</label>
-        <input id="email" name="email" type="email" placeholder="you@garage.com" required />
-        <div class="row" style="margin-top:10px;">
-          <button class="btn primary" type="submit">Subscribe</button>
-          <span id="subMsg" class="muted" role="status" aria-live="polite"></span>
-        </div>
-        <p class="fine">By subscribing you agree to receive the occasional email. You can unsubscribe anytime.</p>
-      </form>
-    </section>
-  </main>
-
-  <!-- ===== Footer ===== -->
-  <footer>
-    <div class="container footer-grid">
-      <div>
-        <div class="brand" style="margin-bottom:8px;">
-          <span class="brand-badge" aria-hidden="true">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/>
-              <path d="M7 15l2-6 3 6 3-6 2 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-          <strong>WobbleWorks VW Garage</strong>
-        </div>
-        <p class="muted">Made with ❤️ for classic Volkswagen nerds. Share your ride, ask questions, and have fun.</p>
-      </div>
-      <div>
-        <h4>Links</h4>
-        <ul>
-          <li><a href="#articles">Articles</a></li>
-          <li><a href="#guides">How-Tos</a></li>
-          <li><a href="#tools">Specs & Tools</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <ul>
-          <li>Email: <a href="mailto:hello@wobbleworks.example">hello@wobbleworks.example</a></li>
-          <li>Instagram: <a href="#">@wobbleworks_vw</a></li>
-          <li>Meet-ups: <a href="#">Find events</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="container fine" style="margin-top:20px;">© <span id="year"></span> WobbleWorks. Not affiliated with Volkswagen AG.</div>
-  </footer>
-
-  <!-- ===== JSON-LD (optional SEO) ===== -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "WobbleWorks VW Garage",
-    "url": "https://example.com",
-    "description": "Guides, tips, specs, and inspiration for classic Volkswagen enthusiasts.",
-    "inLanguage": "en",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://example.com/?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
-  }
-  </script>
-
-  <!-- ===== Scripts ===== -->
   <script>
-    // Dark mode toggle: toggles a data attribute for future theming if desired
-    const themeBtn = document.getElementById('themeBtn');
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (localStorage.getItem('theme') === 'light' || (!prefersDark && !localStorage.getItem('theme'))) {
-      document.documentElement.dataset.theme = 'light';
-    }
-    themeBtn?.addEventListener('click', () => {
-      const isLight = document.documentElement.dataset.theme === 'light';
-      if (isLight) {
-        document.documentElement.removeAttribute('data-theme');
-        localStorage.setItem('theme', 'dark');
-        themeBtn.setAttribute('aria-pressed', 'true');
-      } else {
-        document.documentElement.dataset.theme = 'light';
-        localStorage.setItem('theme', 'light');
-        themeBtn.setAttribute('aria-pressed', 'false');
-      }
-    });
-
-    // Live filter for articles
-    const search = document.getElementById('search');
-    const postGrid = document.getElementById('postGrid');
-    search?.addEventListener('input', (e) => {
-      const q = e.target.value.toLowerCase().trim();
-      const posts = postGrid.querySelectorAll('.post');
-      posts.forEach(p => {
-        const hay = (p.innerText + ' ' + (p.dataset.tags || '')).toLowerCase();
-        p.style.display = hay.includes(q) ? '' : 'none';
-      });
-    });
-
-    // Newsletter fake submit (no backend)
-    function fakeSubmit(ev) {
-      ev.preventDefault();
-      const email = document.getElementById('email');
-      const msg = document.getElementById('subMsg');
-      if (!email.checkValidity()) return false;
-      msg.textContent = 'Thanks! Check your inbox for a confirmation.';
-      email.value = '';
-      return false;
-    }
-
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
+    // Auto-set year in footer
+    document.getElementById("year").textContent =
+      new Date().getFullYear().toString();
   </script>
 </body>
 </html>
